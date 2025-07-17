@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAnalytics Connection Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 20px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .details {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DevAnalytics Connection Test</h1>
+    
+    <div class="status warning">
+        <h3>Before Testing:</h3>
+        <ol>
+            <li>Make sure Node.js is installed</li>
+            <li>Run <code>npm install</code> in the terminal</li>
+            <li>Start the server with <code>npm run dev</code></li>
+            <li>Check that the server is running on port 3000</li>
+        </ol>
+    </div>
+    
+    <button onclick="testConnections()">Test Connections</button>
+    
+    <div id="results"></div>
+
+    <script>
+        async function testConnections() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="status">Testing connections...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/test');
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    resultsDiv.innerHTML = `
+                        <div class="status success">
+                            <h3>All Systems Operational ✅</h3>
+                            <p>MongoDB: ${data.mongodb}</p>
+                            <p>GitHub API: ${data.github}</p>
+                            <p>OpenAI: ${data.openai}</p>
+                        </div>
+                    `;
+                } else {
+                    throw new Error(data.message || 'Test failed');
+                }
+            } catch (error) {
+                let errorMessage = error.message;
+                let troubleshooting = '';
+                
+                if (error.message === 'Failed to fetch') {
+                    errorMessage = 'Could not connect to the server';
+                    troubleshooting = `
+                        <div class="details">
+                            <h4>Troubleshooting Steps:</h4>
+                            <ol>
+                                <li>Make sure Node.js is installed (run 'node -v' in terminal)</li>
+                                <li>Install dependencies: Run 'npm install' in the project directory</li>
+                                <li>Start the server: Run 'npm run dev'</li>
+                                <li>Check if the server is running on port 3000</li>
+                                <li>Look for any error messages in the terminal</li>
+                            </ol>
+                        </div>
+                    `;
+                }
+                
+                resultsDiv.innerHTML = `
+                    <div class="status error">
+                        <h3>Connection Test Failed ❌</h3>
+                        <p>Error: ${errorMessage}</p>
+                        ${troubleshooting}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html> 

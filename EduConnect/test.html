@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAnalytics Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input { 
+            width: 100%; 
+            padding: 8px; 
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .results { 
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chart-container { 
+            margin-top: 20px; 
+            height: 300px;
+        }
+        .error { 
+            color: red;
+            padding: 10px;
+            background: #fee;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .loading { 
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DevAnalytics Test Interface</h1>
+    
+    <div class="form-group">
+        <label for="github">GitHub Username:</label>
+        <input type="text" id="github" placeholder="e.g., defunkt" value="defunkt">
+    </div>
+    
+    <div class="form-group">
+        <label for="leetcode">LeetCode Username:</label>
+        <input type="text" id="leetcode" placeholder="e.g., johnsmith" value="johnsmith">
+    </div>
+    
+    <div class="form-group">
+        <label for="linkedin">LinkedIn URL:</label>
+        <input type="text" id="linkedin" placeholder="https://linkedin.com/in/username" value="https://linkedin.com/in/defunkt">
+    </div>
+    
+    <button onclick="analyzeProfile()">Analyze Profile</button>
+    
+    <div id="loading" class="loading" style="display: none;">Analyzing profile...</div>
+    <div id="error" class="error" style="display: none;"></div>
+    
+    <div id="results" class="results" style="display: none;">
+        <h2>Analysis Results</h2>
+        <h3>Scores</h3>
+        <p>Overall Score: <span id="overall-score"></span></p>
+        <p>GitHub Score: <span id="github-score"></span></p>
+        <p>LeetCode Score: <span id="leetcode-score"></span></p>
+        
+        <h3>Skills Radar</h3>
+        <div class="chart-container">
+            <canvas id="skills-radar"></canvas>
+        </div>
+        
+        <h3>Activity Timeline</h3>
+        <div class="chart-container">
+            <canvas id="activity-timeline"></canvas>
+        </div>
+        
+        <h3>AI Insights</h3>
+        <div id="strengths"></div>
+        <div id="weaknesses"></div>
+        <div id="trajectory"></div>
+        
+        <h3>Action Plan</h3>
+        <ol>
+            <li id="action1"></li>
+            <li id="action2"></li>
+            <li id="action3"></li>
+        </ol>
+    </div>
+
+    <script>
+        async function analyzeProfile() {
+            const github = document.getElementById('github').value;
+            const leetcode = document.getElementById('leetcode').value;
+            const linkedin = document.getElementById('linkedin').value;
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ github, leetcode, linkedin })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Analysis failed');
+                }
+                
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                document.getElementById('error').textContent = error.message;
+                document.getElementById('error').style.display = 'block';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        function displayResults(data) {
+            document.getElementById('overall-score').textContent = data.overall_score;
+            document.getElementById('github-score').textContent = data.github_score;
+            document.getElementById('leetcode-score').textContent = data.leetcode_score;
+            
+            document.getElementById('strengths').innerHTML = `<h4>Strengths:</h4>${data.ai_insights.strengths}`;
+            document.getElementById('weaknesses').innerHTML = `<h4>Areas for Improvement:</h4>${data.ai_insights.weaknesses}`;
+            document.getElementById('trajectory').innerHTML = `<h4>Growth Trajectory:</h4>${data.ai_insights.trajectory}`;
+            
+            document.getElementById('action1').textContent = data.action_plan.step1;
+            document.getElementById('action2').textContent = data.action_plan.step2;
+            document.getElementById('action3').textContent = data.action_plan.step3;
+            
+            new Chart(document.getElementById('skills-radar'), {
+                type: 'radar',
+                data: {
+                    labels: ['Frontend', 'Backend', 'DevOps', 'Algorithms', 'System Design', 'Soft Skills'],
+                    datasets: [{
+                        label: 'Skills',
+                        data: data.skill_radar_data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        pointBackgroundColor: 'rgb(54, 162, 235)'
+                    }]
+                }
+            });
+            
+            new Chart(document.getElementById('activity-timeline'), {
+                type: 'line',
+                data: {
+                    labels: ['6 Months Ago', '5 Months Ago', '4 Months Ago', '3 Months Ago', '2 Months Ago', 'Last Month'],
+                    datasets: [{
+                        label: 'Activity',
+                        data: data.activity_timeline_data,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
+            
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html> 

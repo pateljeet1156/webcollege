@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: #2a5298;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: #2a5298;
+            color: white;
+        }
+
+        .category-card.active {
+            background: #1e3c72;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .category-card:hover::before {
+            top: 100%;
+            left: 100%;
+        }
+
+        .form-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-container.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #2a5298;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #1e3c72;
+            box-shadow: 0 0 10px rgba(30, 60, 114, 0.3);
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            background: #2a5298;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        button:hover {
+            background: #1e3c72;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-top: 20px;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adjust spacing */
+}
+
+.category-card {
+    width: 200px; /* Adjust card width */
+    text-align: center;
+}
+
+/* Make "Other" div take full width and center */
+.category-card[data-category="other"] {
+    width: 100%; /* Takes full width */
+    text-align: center;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    text-align: center;
+}
+
+/* Span "Other" div across 3 columns */
+.category-card[data-category="other"] {
+    grid-column: span 3;
+    justify-self: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Feedback Portal</h1>
+        
+        <div class="category-grid" id="categoryGrid">
+            <div class="category-card" data-category="admission">Admission & Eligibility</div>
+            <div class="category-card" data-category="exam">Entrance Exam Guidance</div>
+            <div class="category-card" data-category="college">College Information</div>
+            <div class="category-card" data-category="courses">Courses & Career Guidance</div>
+            <div class="category-card" data-category="placements">Placements & Fees</div>
+            <div class="category-card" data-category="campus">Campus Life & Facilities</div>
+            <div class="category-card" data-category="technical">Technical or Form Issues</div>
+            <div class="category-card" data-category="suggestions">Suggestions & Feature Requests</div>
+            <div class="category-card" data-category="community">Community & Student Support</div>
+            <div class="category-card"  data-category="community">Other</div>
+        </div>
+
+        <div class="form-container" id="formContainer">
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="educationLevel">Current Education Level</label>
+                    <select id="educationLevel" required>
+                        <option value="">Select your level</option>
+                        <option value="12th">12th Appearing</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="graduate">Graduate</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="entranceExam">Entrance Exam</label>
+                    <select id="entranceExam" required>
+                        <option value="">Select exam</option>
+                        <option value="gujcet">GUJCET</option>
+                        <option value="mhtcet">MHT-CET</option>
+                        <option value="jee">JEE</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="course">Preferred Course/Branch</label>
+                    <input type="text" id="course" required placeholder="e.g., CS, IT, Mech">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location (City/State)</label>
+                    <input type="text" id="location" placeholder="e.g., Mumbai, Maharashtra">
+                </div>
+                <div class="form-group">
+                    <label for="collegeName">College Name (If Enrolled)</label>
+                    <input type="text" id="collegeName" placeholder="Enter your college name">
+                </div>
+                <div class="form-group">
+                    <label for="message">Question/Feedback/Concern</label>
+                    <textarea id="message" required placeholder="Type your message here..."></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="consent" required>
+                    <label for="consent">I confirm that the information provided is true and I'm a student seeking educational support.</label>
+                </div>
+                <button type="submit">Submit Feedback</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                Thank You! Your feedback has been submitted successfully.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categoryGrid = document.getElementById('categoryGrid');
+        const formContainer = document.getElementById('formContainer');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const successMessage = document.getElementById('successMessage');
+        let selectedCategory = null;
+
+        categoryGrid.addEventListener('click', (e) => {
+            const card = e.target.closest('.category-card');
+            if (!card) return;
+
+            if (selectedCategory) {
+                selectedCategory.classList.remove('active');
+            }
+            card.classList.add('active');
+            selectedCategory = card;
+            formContainer.classList.add('active');
+        });
+
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                category: selectedCategory ? selectedCategory.dataset.category : '',
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                educationLevel: document.getElementById('educationLevel').value,
+                entranceExam: document.getElementById('entranceExam').value,
+                course: document.getElementById('course').value,
+                location: document.getElementById('location').value,
+                collegeName: document.getElementById('collegeName').value,
+                message: document.getElementById('message').value,
+                consent: document.getElementById('consent').checked
+            };
+
+            // Here you would typically send formData to a server
+            console.log('Feedback Submitted:', formData);
+
+            // Show success message and reset form
+            formContainer.classList.remove('active');
+            successMessage.style.display = 'block';
+            feedbackForm.reset();
+            if (selectedCategory) {
+                selectedCategory.classList.remove('active');
+                selectedCategory = null;
+            }
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

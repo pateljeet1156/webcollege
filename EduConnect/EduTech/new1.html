@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All HTML Elements with Full CSS</title>
+    
+    <style>
+        /* Universal Selector */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Class & ID Selectors */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        #main-title {
+            color: blue;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Text Styling */
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Borders & Padding */
+        .box {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* List Styling */
+        ul {
+            list-style-type: square;
+        }
+
+        ol {
+            list-style-type: decimal;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Flexbox */
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flex-item {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .grid-item {
+            background: orange;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Hover Effects */
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+        /* Button Styling */
+        .btn {
+            background: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: darkgreen;
+        }
+
+        /* Media Query */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">All HTML Elements with Full CSS</h1>
+        <p>This page contains every possible CSS syntax for learning purposes.</p>
+
+        <div class="box">This is a box with border and padding.</div>
+
+        <h2>Lists</h2>
+        <ul>
+            <li>Unordered List Item</li>
+            <li>Another Item</li>
+        </ul>
+        <ol>
+            <li>Ordered List Item</li>
+            <li>Another Item</li>
+        </ol>
+
+        <h2>Table</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>Alice</td>
+                <td>25</td>
+            </tr>
+        </table>
+
+        <h2>Flexbox</h2>
+        <div class="flex-container">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+
+        <h2>Grid</h2>
+        <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+        </div>
+
+        <h2>Forms</h2>
+        <form>
+            <label>Name: <input type="text"></label>
+            <br><br>
+            <label>Email: <input type="email"></label>
+            <br><br>
+            <input type="submit" class="btn" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

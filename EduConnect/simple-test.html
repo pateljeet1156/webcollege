@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Server Test</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            margin: 40px; 
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .success { 
+            color: #155724;
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .error { 
+            color: #721c24;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .info {
+            background: #e2e3e5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Server Test</h1>
+    
+    <div class="info">
+        <h3>Before Testing:</h3>
+        <ol>
+            <li>Make sure you've run: <code>npm install express cors</code></li>
+            <li>Start the server: <code>node simple-server.js</code></li>
+            <li>You should see "Test server running on http://localhost:3000" in the terminal</li>
+        </ol>
+    </div>
+
+    <button onclick="testSimpleEndpoint()">Test Simple Endpoint</button>
+    <button onclick="testApiEndpoint()">Test API Endpoint</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function testSimpleEndpoint() {
+            await testEndpoint('/test', 'Simple');
+        }
+
+        async function testApiEndpoint() {
+            await testEndpoint('/api/test', 'API');
+        }
+
+        async function testEndpoint(path, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<div class="info">Testing ${type} endpoint...</div>`;
+            
+            try {
+                const response = await fetch(`http://localhost:3000${path}`);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        <h3>${type} Endpoint Test Successful! ✅</h3>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <h3>${type} Endpoint Test Failed ❌</h3>
+                        <p>Error: ${error.message}</p>
+                        <h4>Troubleshooting:</h4>
+                        <ol>
+                            <li>Check if the server is running (look for "Test server running" in terminal)</li>
+                            <li>Make sure you're in the correct directory when running the server</li>
+                            <li>Try restarting the server: Ctrl+C, then 'node simple-server.js'</li>
+                            <li>Check if port 3000 is available (no other servers running on it)</li>
+                        </ol>
+                    </div>`;
+            }
+        }
+    </script>
+</body>
+</html> 

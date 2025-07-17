@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevAnalytics - AI-Powered Developer Profile Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --background-color: #1a1a2e;
+            --card-bg: #1f2937;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --danger-color: #e74c3c;
+            --border-radius: 12px;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--card-bg);
+            padding: 1rem 0;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Main Content Styles */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Profile Input Section */
+        .profile-input {
+            grid-column: 1 / -1;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Score Cards */
+        .score-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .score-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Charts Section */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        /* Insights Section */
+        .insights-list {
+            list-style: none;
+        }
+
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .insight-icon {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .insight-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .insight-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Action Plan Section */
+        .action-steps {
+            list-style: none;
+        }
+
+        .action-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--text-secondary);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">DevAnalytics</a>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">History</a>
+                <a href="#" class="nav-link">Settings</a>
+                <a href="#" class="nav-link">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard">
+            <!-- Profile Input Section -->
+            <div class="card profile-input">
+                <div class="card-header">
+                    <h2 class="card-title">Developer Profile Analysis</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="GitHub Username" id="github-input">
+                    <input type="text" class="input-field" placeholder="LinkedIn Profile URL" id="linkedin-input">
+                    <input type="text" class="input-field" placeholder="LeetCode Username" id="leetcode-input">
+                    <button class="btn btn-primary" id="analyze-btn">
+                        <i class="fas fa-analytics"></i> Analyze Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Overall Score Card -->
+            <div class="card score-card">
+                <div class="card-header">
+                    <h3 class="card-title">Overall Score</h3>
+                </div>
+                <div class="score-value" id="overall-score">--</div>
+                <div class="score-label">Recruiter Readiness Score</div>
+            </div>
+
+            <!-- Platform Scores -->
+            <div class="card score-card">
+                <div class="card-header">
+                    <h3 class="card-title">GitHub Score</h3>
+                </div>
+                <div class="score-value" id="github-score">--</div>
+                <div class="score-label">Repository Quality & Activity</div>
+            </div>
+
+            <div class="card score-card">
+                <div class="card-header">
+                    <h3 class="card-title">LeetCode Score</h3>
+                </div>
+                <div class="score-value" id="leetcode-score">--</div>
+                <div class="score-label">Problem Solving Capability</div>
+            </div>
+
+            <!-- Skill Radar Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Skill Analysis</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="skill-radar"></canvas>
+                </div>
+            </div>
+
+            <!-- Activity Timeline -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Activity Timeline</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activity-timeline"></canvas>
+                </div>
+            </div>
+
+            <!-- AI Insights -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">AI Insights</h3>
+                </div>
+                <ul class="insights-list">
+                    <li class="insight-item">
+                        <i class="fas fa-star insight-icon"></i>
+                        <div class="insight-content">
+                            <h4>Strengths</h4>
+                            <p id="strengths-content">Complete the analysis to view your strengths</p>
+                        </div>
+                    </li>
+                    <li class="insight-item">
+                        <i class="fas fa-exclamation-triangle insight-icon"></i>
+                        <div class="insight-content">
+                            <h4>Areas for Improvement</h4>
+                            <p id="improvements-content">Complete the analysis to view improvement areas</p>
+                        </div>
+                    </li>
+                    <li class="insight-item">
+                        <i class="fas fa-chart-line insight-icon"></i>
+                        <div class="insight-content">
+                            <h4>Growth Trajectory</h4>
+                            <p id="trajectory-content">Complete the analysis to view your growth trajectory</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">6-Month Action Plan</h3>
+                </div>
+                <ol class="action-steps">
+                    <li class="action-step">
+                        <span class="step-number">1</span>
+                        <div class="step-content" id="action-1">Complete the analysis to view your personalized action plan</div>
+                    </li>
+                    <li class="action-step">
+                        <span class="step-number">2</span>
+                        <div class="step-content" id="action-2">Action items will be generated based on your profile</div>
+                    </li>
+                    <li class="action-step">
+                        <span class="step-number">3</span>
+                        <div class="step-content" id="action-3">Recommendations will be tailored to your goals</div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading" id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Charts
+            const skillRadarCtx = document.getElementById('skill-radar').getContext('2d');
+            const activityTimelineCtx = document.getElementById('activity-timeline').getContext('2d');
+
+            // Skill Radar Chart
+            const skillRadarChart = new Chart(skillRadarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Frontend', 'Backend', 'DevOps', 'Algorithms', 'System Design', 'Soft Skills'],
+                    datasets: [{
+                        label: 'Your Skills',
+                        data: [0, 0, 0, 0, 0, 0],
+                        backgroundColor: 'rgba(74, 144, 226, 0.2)',
+                        borderColor: 'rgba(74, 144, 226, 1)',
+                        pointBackgroundColor: 'rgba(74, 144, 226, 1)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Activity Timeline Chart
+            const activityTimelineChart = new Chart(activityTimelineCtx, {
+                type: 'line',
+                data: {
+                    labels: ['6 Months Ago', '5 Months Ago', '4 Months Ago', '3 Months Ago', '2 Months Ago', 'Last Month'],
+                    datasets: [{
+                        label: 'Activity Score',
+                        data: [0, 0, 0, 0, 0, 0],
+                        borderColor: 'rgba(74, 144, 226, 1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Handle Analysis Button Click
+            document.getElementById('analyze-btn').addEventListener('click', async function() {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                loadingOverlay.classList.add('active');
+
+                // Simulate API call and data processing
+                setTimeout(() => {
+                    // Update scores
+                    document.getElementById('overall-score').textContent = '85';
+                    document.getElementById('github-score').textContent = '90';
+                    document.getElementById('leetcode-score').textContent = '80';
+
+                    // Update skill radar data
+                    skillRadarChart.data.datasets[0].data = [85, 90, 75, 80, 70, 95];
+                    skillRadarChart.update();
+
+                    // Update activity timeline data
+                    activityTimelineChart.data.datasets[0].data = [65, 70, 75, 80, 85, 90];
+                    activityTimelineChart.update();
+
+                    // Update insights
+                    document.getElementById('strengths-content').innerHTML = `
+                        1. Strong GitHub presence with consistent contributions<br>
+                        2. Excellent problem-solving skills on LeetCode<br>
+                        3. Active open source contributor
+                    `;
+
+                    document.getElementById('improvements-content').innerHTML = `
+                        1. Increase system design projects<br>
+                        2. Enhance DevOps skills<br>
+                        3. Expand LinkedIn network
+                    `;
+
+                    document.getElementById('trajectory-content').innerHTML = `
+                        Showing strong upward trend in both technical skills and professional networking
+                    `;
+
+                    // Update action plan
+                    document.getElementById('action-1').textContent = 'Complete 3 system design projects';
+                    document.getElementById('action-2').textContent = 'Obtain AWS certification';
+                    document.getElementById('action-3').textContent = 'Contribute to 5 major open source projects';
+
+                    loadingOverlay.classList.remove('active');
+                }, 2000);
+            });
+        });
+
+        // Need to implement proper LinkedIn API integration
+        async function analyzeLinkedIn(profileUrl) {
+            // Current implementation uses scraping which won't work
+            // Need to use LinkedIn API SDK
+        }
+
+        // Need to implement scoring algorithms
+        function calculateGitHubScore(stars, forks, frequency) {
+            // Missing implementation
+        }
+
+        async function analyzeGitHub(username) {
+            // GitHub API integration
+        }
+
+        async function analyzeLeetCode(username) {
+            // LeetCode API integration
+        }
+
+        async function calculateScores(githubData, leetcodeData) {
+            // Scoring algorithm
+        }
+
+        async function generateAIInsights(data) {
+            // AI insights generation
+        }
+    </script>
+</body>
+</html>

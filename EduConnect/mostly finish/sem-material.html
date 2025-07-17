@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTU Educational Resources</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-gray: #e9ecef;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f8fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            margin-left: 20px;
+        }
+
+        .main-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .resource-tabs {
+            margin-bottom: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background-color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 600;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .tab:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .syllabus-list {
+            list-style: none;
+        }
+
+        .syllabus-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .syllabus-item:last-child {
+            border-bottom: none;
+        }
+
+        .syllabus-item:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .syllabus-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .syllabus-link:hover {
+            color: var(--primary-color);
+        }
+
+        .download-icon {
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .book-card:hover .book-image img {
+            transform: scale(1.05);
+        }
+
+        .book-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .book-title {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: 600;
+            height: 2.6em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .book-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            flex: 1;
+            margin-left: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+        }
+
+        .pyq-container {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .pyq-container h3 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .pyq-container p {
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .btn-large {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 6px;
+        }
+
+        .pyq-subjects {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border-radius: 0 0 8px 8px;
+            z-index: 10;
+        }
+
+        .pyq-container:hover .pyq-subjects {
+            display: block;
+        }
+
+        .subject-category {
+            margin-bottom: 20px;
+        }
+
+        .subject-category h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .subject-list {
+            list-style: none;
+        }
+
+        .subject-list li {
+            margin: 10px 0;
+        }
+
+        .subject-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .subject-list a:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .subject-card {
+        background-color: var(--secondary-color);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+    }
+
+    .subject-card:hover {
+        background-color: var(--light-gray);
+        transform: translateY(-5px);
+    }
+
+    .year-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .year-card {
+        background-color: var(--secondary-color);
+        border-radius: 6px;
+        padding: 15px;
+        text-align: center;
+        position: relative;
+        transition: var(--transition);
+        cursor: pointer;
+        box-shadow: var(--shadow);
+    }
+
+    .year-card:hover {
+        background-color: var(--light-gray);
+        transform: translateY(-3px);
+    }
+
+    .year-options {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: var(--shadow);
+        z-index: 10;
+        padding: 10px;
+    }
+
+    .year-card:hover .year-options {
+        display: block;
+    }
+
+    .year-options a {
+        display: block;
+        padding: 5px;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .year-options a:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+    }
+
+    @media (max-width: 768px) {
+        .subject-grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+
+        .year-grid {
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        }
+    }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 23px;
+            }
+
+            .main-nav {
+                width: 100%;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s ease;
+            }
+
+            .main-nav.active {
+                height: 180px;
+                margin-top: 15px;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+            }
+
+            .main-nav li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1 0 50%;
+                min-width: 160px;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .book-image {
+                height: 160px;
+            }
+
+            .pyq-container {
+                padding: 25px;
+            }
+
+            .pyq-subjects {
+                position: static;
+                display: none;
+                margin-top: 20px;
+            }
+
+            .pyq-container:hover .pyq-subjects {
+                display: none;
+            }
+
+            .pyq-subjects.active {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                width: 100%;
+            }
+
+            .book-image {
+                height: 120px;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/api/placeholder/40/40" alt="GTU Logo">
+                    <span>GTU Resources</span>
+                </div>
+                <button class="nav-toggle" id="navToggle">☰</button>
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>GTU Educational Resources</h1>
+            <p>Access syllabi, reference books, standard textbooks, and previous year question papers for all GTU courses in one convenient place.</p>
+        </div>
+    </section>
+
+    <section id="resources" class="resource-tabs">
+        <div class="container">
+            <div class="tabs">
+                <div class="tab active" data-tab="syllabus-content">Syllabus</div>
+                <div class="tab" data-tab="reference-books-content">Reference Books</div>
+                <div class="tab" data-tab="standard-books-content">Standard Books</div>
+                <div class="tab" data-tab="pyq-content">Previous Year Question Papers</div>
+            </div>
+
+            <div class="tab-content active" id="syllabus-content">
+                <ul class="syllabus-list">
+                    <li class="syllabus-item">
+                        <a href="syllabus/ds_syllabus.pdf" class="syllabus-link" download>
+                            <span>Data Structures (3130703)</span>
+                            <span class="download-icon">⬇️</span>
+                        </a>
+                    </li>
+                    <li class="syllabus-item">
+                        <a href="syllabus/dbms_syllabus.pdf" class="syllabus-link" download>
+                            <span>Database Management Systems (3130702)</span>
+                            <span class="download-icon">⬇️</span>
+                        </a>
+                    </li>
+                    <li class="syllabus-item">
+                        <a href="syllabus/cn_syllabus.pdf" class="syllabus-link" download>
+                            <span>Computer Networks (3140705)</span>
+                            <span class="download-icon">⬇️</span>
+                        </a>
+                    </li>
+                    <li class="syllabus-item">
+                        <a href="syllabus/os_syllabus.pdf" class="syllabus-link" download>
+                            <span>Operating Systems (3140709)</span>
+                            <span class="download-icon">⬇️</span>
+                        </a>
+                    </li>
+                    <li class="syllabus-item">
+                        <a href="syllabus/oop_syllabus.pdf" class="syllabus-link" download>
+                            <span>Object Oriented Programming with C++ (3110003)</span>
+                            <span class="download-icon">⬇️</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="reference-books-content">
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-image">
+                            <img src="/api/placeholder/250/180" alt="Data Structures Book">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">Data Structures Using C and C++</h3>
+                            <div class="book-actions">
+                                <a href="books/ds_book.pdf" class="btn btn-primary" download>Download</a>
+                                <a href="books/ds_book.pdf" class="btn btn-secondary" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-image">
+                            <img src="/api/placeholder/250/180" alt="DBMS Book">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">Database System Concepts</h3>
+                            <div class="book-actions">
+                                <a href="books/dbms_book.pdf" class="btn btn-primary" download>Download</a>
+                                <a href="books/dbms_book.pdf" class="btn btn-secondary" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="standard-books-content">
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-image">
+                            <img src="/api/placeholder/250/180" alt="Algorithms Book">
+                        </div>
+                        <div class="book-info">
+                            <h3 classユーザー class="book-title">Introduction to Algorithms</h3>
+                            <div class="book-actions">
+                                <a href="books/algo_book.pdf" class="btn btn-primary" download>Download</a>
+                                <a href="books/algo_book.pdf" class="btn btn-secondary" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-image">
+                            <img src="/api/placeholder/250/180" alt="C Programming Book">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">The C Programming Language</h3>
+                            <div class="book-actions">
+                                <a href="books/c_book.pdf" class="btn btn-primary" download>Download</a>
+                                <a href="books/c_book.pdf" class="btn btn-secondary" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="pyq-content">
+                <div class="pyq-container">
+                    <h3>Previous Year Question Papers</h3>
+                    <p>Select a subject to view year-wise question papers.</p>
+                    <div class="subject-grid" id="subjectGrid">
+                        <div class="subject-card" onclick="showYears('subject1')">
+                            <h4>Subject 1</h4>
+                        </div>
+                        <div class="subject-card" onclick="showYears('subject2')">
+                            <h4>Subject 2</h4>
+                        </div>
+                        <div class="subject-card" onclick="showYears('subject3')">
+                            <h4>Subject 3</h4>
+                        </div>
+                        <div class="subject-card" onclick="showYears('subject4')">
+                            <h4>Subject 4</h4>
+                        </div>
+                        <div class="subject-card" onclick="showYears('subject5')">
+                            <h4>Subject 5</h4>
+                        </div>
+                    </div>
+                    <div class="year-grid" id="yearGrid" style="display: none;">
+                        <!-- Year divs will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: support@gturesources.com</li>
+                        <li>Phone: +91 123-456-7890</li>
+                        <li>Address: GTU Campus, Gujarat</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GTU Educational Resources. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(section => section.classList.remove('active'));
+
+                tab.classList.add('active');
+                const content = document.getElementById(tabId);
+                content.classList.add('active');
+            });
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // PYQ subjects toggle for mobile
+        const togglePyqSubjects = document.getElementById('togglePyqSubjects');
+        const pyqSubjects = document.querySelector('.pyq-subjects');
+        togglePyqSubjects.addEventListener('click', (e) => {
+            e.preventDefault();
+            pyqSubjects.classList.toggle('active');
+        });
+        function showYears(subjectId) {
+        const yearGrid = document.getElementById('yearGrid');
+        const subjectGrid = document.getElementById('subjectGrid');
+        subjectGrid.style.display = 'none';
+        yearGrid.style.display = 'grid';
+        yearGrid.innerHTML = '';
+
+        const years = [2020, 2021, 2022, 2023, 2024, 2025];
+        years.forEach(year => {
+            const winterDiv = document.createElement('div');
+            winterDiv.className = 'year-card';
+            winterDiv.innerHTML = `
+                <span>W-${year.toString().slice(-2)}</span>
+                <div class="year-options">
+                    <a href="pyqs/${subjectId}_W${year}.pdf" target="_blank">View</a>
+                    <a href="pyqs/${subjectId}_W${year}.pdf" download>Download</a>
+                </div>
+            `;
+            yearGrid.appendChild(winterDiv);
+
+            const summerDiv = document.createElement('div');
+            summerDiv.className = 'year-card';
+            summerDiv.innerHTML = `
+                <span>S-${year.toString().slice(-2)}</span>
+                <div class="year-options">
+                    <a href="pyqs/${subjectId}_S${year}.pdf" target="_blank">View</a>
+                    <a href="pyqs/${subjectId}_S${year}.pdf" download>Download</a>
+                </div>
+            `;
+            yearGrid.appendChild(summerDiv);
+        });
+    }
+    </script>

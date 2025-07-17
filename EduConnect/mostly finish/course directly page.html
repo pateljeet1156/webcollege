@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Directory</title>
+  <style>
+    
+    :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --light-color: #ecf0f1;
+        --dark-color: #2c3e50;
+        --text-color: #333;
+        --text-light: #7f8c8d;
+        --bg-color: #fff;        <body>
+            <header>
+                <div class="container header-container">
+                    <a href="#" class="logo">Edu<span>Guide</span></a>
+                    <div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon toggle-icon"></i>
+                        <span id="themeText">Dark Mode</span>
+                    </div>
+                    <div class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <nav>
+                        <ul class="nav-menu" id="navMenu">
+                            <!-- Navigation content -->
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        
+            <main>
+                <!-- Main content of the webpage -->
+                <section class="hero">
+                    <h1>Welcome to EduGuide</h1>
+                    <p>Your comprehensive educational companion.</p>
+                </section>
+                <!-- Other sections -->
+            </main>
+        
+            <footer id="contact">
+                <div class="container">
+                    <div class="footer-container">
+                        <!-- Footer content -->
+                    </div>
+                    <div class="copyright">
+                        <p>© 2023 EduGuide. All Rights Reserved. | <a href="#privacy-policy" class="fault">Privacy Policy</a> | <a href="#terms" class="fault">Terms of Service</a></p>
+                    </div>
+                </div>
+            </footer>
+        </body>
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    }
+
+    .dark-mode {
+        --primary-color: #2980b9;
+    --secondary-color: #34495e;
+        --accent-color: #c0392b;
+--light-color: #2c3e50;
+        --dark-color: #ecf0f1;
+    --text-color: #ecf0f1;
+        --text-light: #bdc3c7;
+        --bg-color: #2c3e50;
+        --card-bg: #34495e;
+--shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Header in Dark Mode */
+    .dark-mode header {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    /* Footer in Dark Mode */
+        .dark-mode footer {
+        background-color: var(--secondary-color);
+        color: var(--text-light);
+    }
+
+    /* Footer Links in Dark Mode */
+    .dark-mode footer a {
+        color: var(--text-light);
+    }
+
+    .dark-mode footer a:hover {
+        color: var(--accent-color);
+    }
+
+    /* Navigation Links in Dark Mode */
+    .dark-mode .nav-menu a {
+        color: var(--text-color);
+    }
+
+    .dark-mode .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.67;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+        transition: var(--transition);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 15px 0;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: var(--transition);
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .logo span {
+        color: var(--primary-color);
+    }
+
+    /* Navigation Styles */
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        transition: var(--transition);
+    }
+
+    .nav-menu li {
+        position: relative;
+        margin-left: 20px;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: var(--transition);
+    }
+
+    .nav-menu a:hover {
+        background-color: var(--primary-color); /* Background color on hover */
+        color: white; /* Text color on hover */
+    }
+
+    /* Dropdown Content Links */
+    .dropdown-content a {
+        color: var(--text-color); /* Default text color for dropdown links */
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+
+    .dropdown-content a:hover {
+        background-color: var(--primary-color); /* Background color on hover */
+        color: white; /* Text color on hover */
+    }
+
+    /* Mega Menu Links */
+    .mega-menu-col a {
+        color: var(--text-color); /* Default text color for mega menu links */
+        text-decoration: none;
+        padding: 5px 0;
+        display: block;
+        transition: var(--transition);
+    }
+
+    .mega-menu-col a:hover {
+        color: var(--primary-color); /* Text color on hover */
+        background-color: rgba(0, 0, 0, 0.05); /* Optional subtle background on hover */
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: var(--card-bg);
+        min-width: 250px;
+        box-shadow: var(--shadow);
+        border-radius: 4px;
+        z-index: 1;
+        top: 100%;
+        left: 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .dropdown-content a {
+        color: var(--text-color);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+
+    .dropdown-content a:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .dropdown-section h4 {
+        padding: 8px 16px;
+        color: var(--primary-color);
+        margin: 0;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+    .mega-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow);
+        padding: 20px;
+        z-index: 100;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .has-mega-menu:hover .mega-menu,
+    .has-mega-menu.active .mega-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mega-menu-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .mega-menu-col h3 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    .mega-menu-col a {
+        color: var(--text-color);
+        text-decoration: none;
+        padding: 5px 0;
+        display: block;
+        transition: var(--transition);
+    }
+
+    .mega-menu-col a:hover {
+        color: var(--primary-color);
+    }
+
+    .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: white;
+        transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
+        z-index: 0;
+    }
+
+    .hero > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        animation: fadeInUp 1s ease 0.2s backwards;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1s ease 0.4s backwards;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Features Section */
+    .features {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        color: var(--secondary-color);
+        position: relative;
+        font-size: 2rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .feature-card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+        font-size: 40px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.1);
+    }
+
+    /* Updates Section */
+    .updates {
+        padding: 60px 0;
+        background-color: var(--card-bg);
+    }
+
+    .update-card {
+        background-color: var(--bg-color);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .update-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .update-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.3s ease;
+    }
+
+    .update-card:hover .update-image {
+        transform: scale(1.05);
+    }
+
+    .update-content {
+        padding: 20px;
+    }
+
+    .read-more {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .read-more:hover {
+        color: var(--accent-color);
+        padding-left: 5px;
+    }
+
+    /* Quick Links */
+    .quick-links {
+        padding: 40px 0;
+    }
+
+    .links-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .quick-link {
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .quick-link:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 60px 0 20px;
+        position: relative;
+    }
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .footer-col.map-container {
+        grid-column: span 2; /* Make the map span two columns for better visibility */
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    .footer-col.map-container iframe {
+        width: 100%;
+        height: 250px; /* Adjust height for the map */
+        border: none;
+        transition: transform 0.3s ease;
+    }
+
+    .footer-col.map-container iframe:hover {
+        transform: scale(1.02);
+    }
+
+    .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: var(--transition);
+    }
+
+    .social-links a:hover {
+        background-color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bdc3c7;
+        font-size: 0.9rem;
+    }
+
+    /* Search Bar */
+    .search-container {
+        display: flex;
+        margin: 20px auto;
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-size: 16px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: var(--transition);
+    }
+    .fault{
+        color: white ;
+        text-decoration: none;
+
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+    .search-button {
+        padding: 0 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .search-button:hover {
+        background-color: var(--secondary-color);
+    }
+
+    .theme-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        cursor: pointer;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .nav-menu {
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary-color);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu.active {
+            transform: translateY(0);
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+
+        .dropdown-content,
+        .mega-menu {
+            position: static;
+            width: 100%;
+            box-shadow: none;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .features-grid,
+        .updates-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Footer Map Section */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-col.map-container {
+    grid-column: span 2; /* Make the map span two columns for better visibility */
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.footer-col.map-container iframe {
+    width: 100%;
+    height: 250px; /* Adjust height for the map */
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.footer-col.map-container iframe:hover {
+    transform: scale(1.02);
+}
+body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        /* Creates space between header and footer */
+        padding: 40px 0;
+        background-color: var(--bg-color);
+    }
+
+    
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #333;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--primary-color);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .course-box {
+      background-color: var(--light-color);
+      border: 1px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-box a {
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .course-box a:hover {
+      color: var(--accent-color);
+    }
+
+    .course-short-form {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .course-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .course-short-form {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+        <a href="#" class="logo">Edu<span>Guide</span></a>
+        <div class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon toggle-icon"></i>
+            <span id="themeText">Dark Mode</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <!-- Same navigation content -->
+                <li class="has-mega-menu">
+                    <a href="#">Home <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-col">
+                                <h3>Overview</h3>
+                                <ul>
+                                    <li><a href="#welcome">Welcome</a></li>
+                                    <li><a href="#about">About EduGuide</a></li>
+                                    <li><a href="#how-it-works">How It Works</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Highlights</h3>
+                                <ul>
+                                    <li><a href="#features">Key Features</a></li>
+                                    <li><a href="#success-stories">Success Stories</a></li>
+                                    <li><a href="#testimonials">Testimonials</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Latest Updates</h3>
+                                <ul>
+                                    <li><a href="#updates">Featured News</a></li>
+                                    <li><a href="#announcements">Recent Announcements</a></li>
+                                    <li><a href="#events">Upcoming Events</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Quick Links</h3>
+                                <ul>
+                                    <li><a href="#colleges">Popular Colleges</a></li>
+                                    <li><a href="#courses">Top Courses</a></li>
+                                    <li><a href="#dates">Important Dates</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- Rest of the navigation items remain unchanged -->
+                <li class="dropdown">
+                    <a href="#admission-guidance">Admission Guidance <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4>Cutoff & College Predictor</h4>
+                            <a href="#college-predictor">College Predictor Tool</a>
+                            <a href="#cutoff-analysis">Cutoff Analysis</a>
+                            <a href="#rank-estimator">Rank Estimator</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>College Listings</h4>
+                            <a href="#acpc-colleges">ACPC Colleges</a>
+                            <a href="#jee-colleges">JEE Colleges</a>
+                            <a href="#other-colleges">Other Entrance Colleges</a>
+                            <a href="#college-reviews">Reviews & Ratings</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Exam Guides</h4>
+                            <a href="#acpc-process">ACPC Process</a>
+                            <a href="#jee-guidance">JEE Guidance</a>
+                            <a href="#other-exams">Other Entrance Exams</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Counselling Services</h4>
+                            <a href="#book-session">Book a Session</a>
+                            <a href="#faq">FAQ</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#news">News & Circulars <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#gtu-news">GTU News</a>
+                        <a href="#acpc-updates">ACPC Updates</a>
+                        <a href="#exam-notifications">Exam Notifications</a>
+                        <a href="#circular-archive">Circular Archive</a>
+                        <a href="#website-updates">Website Updates</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#resources">Courses & Resources <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#gtu-resources">GTU Resources</a>
+                        <a href="#branch-materials">Branch-Specific Materials</a>
+                        <a href="#semester-notes">Semester-wise Notes</a>
+                        <a href="#previous-papers">Previous Year Papers</a>
+                        <a href="#study-guides">Study Guides</a>
+                        <a href="#syllabus">Syllabus</a>
+                        <a href="#video-lectures">Video Lectures</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#community">Community <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#forums">Discussion Forums</a>
+                        <a href="#whatsapp-groups">WhatsApp Groups</a>
+                        <a href="#peer-discussions">Peer Discussions</a>
+                        <a href="#events-competitions">Events & Competitions</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#scholarships">Scholarships <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#scholarship-news">Scholarship News</a>
+                        <a href="#application-tips">Application Tips</a>
+                        <a href="#eligibility-checker">Eligibility Checker</a>
+                        <a href="#deadlines">Deadlines</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#jobs">Jobs & Internships <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#job-listings">Job Listings</a>
+                        <a href="#placement-prep">Placement Preparation</a>
+                        <a href="#internship-opps">Internship Opportunities</a>
+                        <a href="#skill-development">Skill Development</a>
+                    </div>
+                </li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#more">More <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#about-us">About Us</a>
+                        <a href="#help-support">Help & Support</a>
+                        <a href="#faqs">FAQs</a>
+                        <a href="#feedback">Feedback</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<pre>
+
+</pre>
+  <h1>Course Directory</h1>
+  <div class="course-grid">
+    <!-- Course Boxes -->
+    <div class="course-box">
+      <div class="course-short-form">BA</div>
+      <p>Bachelor of Architecture</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BB</div>
+      <p>Bachelor of Business Administration</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BC</div>
+      <p>Bachelor of Computer Application</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BN</div>
+      <p>Bachelor of Design</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BE</div>
+      <p>Bachelor of Engineering</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">EP</div>
+      <p>Bachelor of Engineering (Part Time)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BH</div>
+      <p>Bachelor of Hotel Management and Catering Technology</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BI</div>
+      <p>Bachelor of Interior Design</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BP</div>
+      <p>Bachelor of Pharmacy</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">PP</div>
+      <p>Bachelor of Pharmacy (Practice)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BL</div>
+      <p>Bachelor of Planning</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BS</div>
+      <p>Bachelor of Science</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">BV</div>
+      <p>Bachelor of Vocation</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DA</div>
+      <p>Diploma in Architecture</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DI</div>
+      <p>Diploma in Engineering</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DP</div>
+      <p>Diploma in Pharmacy</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DV</div>
+      <p>Diploma in Vocation</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">PH</div>
+      <p>Doctor of Philosophy</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">IM</div>
+      <p>Integrated M.Sc. Biotechnology</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MA</div>
+      <p>Integrated MBA (IMBA)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MR</div>
+      <p>Master of Architecture</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MH</div>
+      <p>Master of Arts in Hindu Studies</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MB</div>
+      <p>Master of Business Administration</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MV</div>
+      <p>Master of Business Administration (Part Time)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MC</div>
+      <p>Master of Computer Applications</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">IC</div>
+      <p>Master of Computer Applications (Integrated)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">ME</div>
+      <p>Master of Engineering</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MP</div>
+      <p>Master of Pharmacy</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">ML</div>
+      <p>Master of Philosophy</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">MN</div>
+      <p>Master of Planning</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">IB</div>
+      <p>Master of Science (Industrial Biotechnology)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">CS</div>
+      <p>Master of Science (Integrated)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">FD</div>
+      <p>Pharm.D.</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">PB</div>
+      <p>Pharm.D. (Post Baccalaureate)</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">PD</div>
+      <p>Post Diploma Degree Course</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DB</div>
+      <p>Post Graduate Diploma in Bioinformatics</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DS</div>
+      <p>Post Graduate Diploma in Data Science</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DM</div>
+      <p>Post Graduate Diploma in Digital Marketing</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">DH</div>
+      <p>Post Graduate Diploma in Hospital Management</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="course-box">
+      <div class="course-short-form">PR</div>
+      <p>Post Graduate Diploma in IPR</p>
+      <a href="#">Learn More →</a>
+    </div>
+  </div>
+  <pre>
+
+  
+  </pre>
+
+  
+  <footer id="contact">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>EduGuide</h3>
+                <p>Your comprehensive educational companion providing guidance for admissions, courses, resources, and career opportunities.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="fault"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about" class="fault"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#admission-guidance" class="fault"><i class="fas fa-chevron-right"></i> Admission Guidance</a></li>
+                    <li><a href="#resources" class="fault"><i class="fas fa-chevron-right"></i> Courses & Resources</a></li>
+                    <li><a href="#scholarships" class="fault"><i class="fas fa-chevron-right"></i> Scholarships</a></li>
+                    <li><a href="#contact" class="fault"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Admission Help</h3>
+                <ul>
+                    <li><a href="#acpc-process" class="fault"><i class="fas fa-chevron-right"></i> ACPC Process</a></li>
+                    <li><a href="#jee-guidance" class="fault"><i class="fas fa-chevron-right"></i> JEE Guidance</a></li>
+                    <li><a href="#college-predictor" class="fault"><i class="fas fa-chevron-right"></i> College Predictor</a></li>
+                    <li><a href="#cutoff-analysis" class="fault"><i class="fas fa-chevron-right"></i> Cutoff Analysis</a></li>
+                    <li><a href="#college-reviews" class="fault"><i class="fas fa-chevron-right"></i> College Reviews</a></li>
+                    <li><a href="#book-session" class="fault"><i class="fas fa-chevron-right"></i> Counselling</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Ahmedabad, Gujarat</li>
+                    <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                    <li><i class="fas fa-envelope"></i> info@eduguide.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+            <!-- Add the map section here -->
+            <div class="footer-col map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3706.7556691730206!2d73.002549!3d21.712211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDQyJzQ0LjAiTiA3M8KwMDAnMDkuMiJF!5e0!3m2!1sen!2sin!4v1743587886877!5m2!1sen!2sin" 
+                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 EduGuide. All Rights Reserved. | <a href="#privacy-policy" class="fault">Privacy Policy</a> | <a href="#terms" class="fault">Terms of Service</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+  // Optimized JavaScript with better performance and elegance
+  const elements = {
+      menuToggle: document.getElementById('menuToggle'),
+      navMenu: document.getElementById('navMenu'),
+      themeToggle: document.getElementById('themeToggle'),
+      toggleIcon: document.querySelector('.toggle-icon'),
+      themeText: document.getElementById('themeText'),
+      dropdowns: document.querySelectorAll('.dropdown > a'),
+      megaMenus: document.querySelectorAll('.has-mega-menu > a'),
+      links: document.querySelectorAll('a[href^="#"]')
+  };
+
+  const state = {
+      isMobileMenuOpen: false,
+      isDarkMode: localStorage.getItem('theme') === 'dark' || 
+                 (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  };
+
+  // Initialize theme
+  if (state.isDarkMode) {
+      document.body.classList.add('dark-mode');
+      elements.toggleIcon.classList.replace('fa-moon', 'fa-sun');
+      elements.themeText.textContent = 'Light Mode';
+  }
+
+  // Event Listeners
+  elements.menuToggle.addEventListener('click', () => {
+      state.isMobileMenuOpen = !state.isMobileMenuOpen;
+      elements.navMenu.classList.toggle('active');
+      elements.menuToggle.querySelector('i').classList.toggle('fa-bars');
+      elements.menuToggle.querySelector('i').classList.toggle('fa-times');
+  });
+
+  elements.dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', (e) => {
+          if (window.innerWidth <= 992) {
+              e.preventDefault();
+              const parent = dropdown.parentElement;
+              parent.classList.toggle('active');
+              elements.dropdowns.forEach(other => {
+                  if (other !== dropdown) other.parentElement.classList.remove('active');
+              });
+              elements.megaMenus.forEach(mega => mega.parentElement.classList.remove('active'));
+          }
+      });
+  });
+
+  elements.megaMenus.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+          if (window.innerWidth <= 992) {
+              e.preventDefault();
+              const parent = trigger.parentElement;
+              parent.classList.toggle('active');
+              elements.megaMenus.forEach(other => {
+                  if (other !== trigger) other.parentElement.classList.remove('active');
+              });
+              elements.dropdowns.forEach(dropdown => dropdown.parentElement.classList.remove('active'));
+          }
+      });
+  });
+
+  elements.themeToggle.addEventListener('click', () => {
+      state.isDarkMode = !state.isDarkMode;
+      document.body.classList.toggle('dark-mode');
+      elements.toggleIcon.classList.replace(state.isDarkMode ? 'fa-moon' : 'fa-sun', 
+                                           state.isDarkMode ? 'fa-sun' : 'fa-moon');
+      elements.themeText.textContent = state.isDarkMode ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('theme', state.isDarkMode ? 'dark' : 'light');
+  });
+
+  // Smooth scrolling
+  elements.links.forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = anchor.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const target = document.querySelector(targetId);
+          if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+              if (window.innerWidth <= 992) {
+                  elements.navMenu.classList.remove('active');
+                  elements.menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+              }
+          }
+      });
+  });
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+      if (!e.target.closest('.header-container') && !e.target.closest('.menu-toggle') && state.isMobileMenuOpen) {
+          elements.navMenu.classList.remove('active');
+          elements.menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+          state.isMobileMenuOpen = false;
+      }
+  });
+
+  // Handle resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 992 && state.isMobileMenuOpen) {
+              elements.navMenu.classList.remove('active');
+              elements.menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+              state.isMobileMenuOpen = false;
+          }
+      }, 100);
+  });
+</script>
+  
+</body>
+</html>

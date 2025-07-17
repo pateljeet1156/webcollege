@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branch Semesters</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+    }
+
+    /* Header Styling */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #2c3e50;
+    }
+
+    /* Table Styling */
+    .branch-table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .branch-table th,
+    .branch-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    .branch-table thead {
+      background-color: #3498db;
+      color: white;
+    }
+    .branch-table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .branch-table tbody tr:hover {
+      background-color: #d4e6f1;
+    }
+
+    .branch-table a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .branch-table a:hover {
+      color: #e74c3c;
+    }
+
+    /* Branch Name and Semester List */
+    .semester-list {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .semester-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .semester-list ul li {
+      margin: 5px 0;
+    }
+    .semester-list ul li a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .semester-list ul li a:hover {
+      color: #e74c3c;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .branch-table th,
+      .branch-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+      .semester-list {
+        width: 100%;
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>GTU Engineering Branches</h1>
+  </header>
+
+  <!-- Branch Table -->
+  <table class="branch-table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Branch Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>02</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="02">Automobile Engineering</a>
+          <div class="semester-list" id="semesters-02">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>03</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="03">Biomedical Engineering</a>
+          <div class="semester-list" id="semesters-03">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>05</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="05">Chemical Engineering</a>
+          <div class="semester-list" id="semesters-05">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>06</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="06">Civil Engineering</a>
+          <div class="semester-list" id="semesters-06">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>07</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="07">Computer Engineering</a>
+          <div class="semester-list" id="semesters-07">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="09">Electrical Engineering</a>
+          <div class="semester-list" id="semesters-09">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="11">Electronics & Communication Engineering</a>
+          <div class="semester-list" id="semesters-11">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="13">Environmental Engineering</a>
+          <div class="semester-list" id="semesters-13">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="16">Information Technology</a>
+          <div class="semester-list" id="semesters-16">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="17">Instrumentation & Control Engineering</a>
+          <div class="semester-list" id="semesters-17">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="19">Mechanical Engineering</a>
+          <div class="semester-list" id="semesters-19">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="21">Metallurgy</a>
+          <div class="semester-list" id="semesters-21">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="22">Mining Engineering</a>
+          <div class="semester-list" id="semesters-22">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="23">Plastic Technology</a>
+          <div class="semester-list" id="semesters-23">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="24">Power Electronics</a>
+          <div class="semester-list" id="semesters-24">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="26">Rubber Technology</a>
+          <div class="semester-list" id="semesters-26">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="29">Textile Technology</a>
+          <div class="semester-list" id="semesters-29">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="31">Computer Science & Engineering</a>
+          <div class="semester-list" id="semesters-31">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="32">Information & Communication Technology</a>
+          <div class="semester-list" id="semesters-32">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="41">Robotics and Automation</a>
+          <div class="semester-list" id="semesters-41">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>43</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="43">Artificial Intelligence and Data Science</a>
+          <div class="semester-list" id="semesters-43">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>46</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="46">Computer Science & Engineering (Data Science)</a>
+          <div class="semester-list" id="semesters-46">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>47</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="47">Electronics & Instrumentation Engineering</a>
+          <div class="semester-list" id="semesters-47">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>52</td>
+        <td>
+          <a href="#" class="branch-name" data-branch="52">Artificial Intelligence (AI) and Machine Learning</a>
+          <div class="semester-list" id="semesters-52">
+            <ul>
+              <li><a href="#">Semester 1</a></li>
+              <li><a href="#">Semester 2</a></li>
+              <li><a href="#">Semester 3</a></li>
+              <li><a href="#">Semester 4</a></li>
+              <li><a href="#">Semester 5</a></li>
+              <li><a href="#">Semester 6</a></li>
+              <li><a href="#">Semester 7</a></li>
+              <li><a href="#">Semester 8</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- JavaScript for Toggle Functionality -->
+  <script>
+    // JavaScript to toggle semester list visibility
+    document.querySelectorAll('.branch-name').forEach(branch => {
+      branch.addEventListener('click', (e) => {
+        e.preventDefault();
+        const branchId = branch.getAttribute('data-branch');
+        const semesterList = document.getElementById(`semesters-${branchId}`);
+
+        // Toggle visibility of the semester list
+        if (semesterList.style.display === 'block') {
+          semesterList.style.display = 'none';
+        } else {
+          // Hide all other semester lists
+          document.querySelectorAll('.semester-list').forEach(list => {
+            list.style.display = 'none';
+          });
+          semesterList.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

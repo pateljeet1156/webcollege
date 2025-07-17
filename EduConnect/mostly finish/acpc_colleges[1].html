@@ -1,0 +1,2223 @@
+<!-- acpc-colleges.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduGuide - Your complete educational companion for admissions, courses, and career opportunities">
+    <title>ACPC Colleges | EduGuide Gujarat Admission</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enhanced Root Variables */
+    :root {
+        --primary-color: #3498db;
+            --primary-light: #5dade2;
+        --secondary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --light-color: #ecf0f1;
+            --dark-color: #1a2634;
+            --text-color: #ffffff;
+            --bg-color: #1a2634;
+            --card-bg: #2c3e50;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --hover-transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Modern College Cards */
+        .college-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .college-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .college-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .college-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+
+        /* College Content */
+        .college-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .college-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .college-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .college-card:hover .college-content h3::after {
+            width: 100px;
+        }
+
+        .college-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .college-rating i {
+            color: #f1c40f;
+            margin-right: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .college-card:hover .college-rating i {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .college-location {
+        display: flex;
+        align-items: center;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .college-location i {
+            color: #3498db;
+            margin-right: 10px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .college-card:hover .college-location i {
+            transform: scale(1.2);
+        }
+
+        .college-features {
+        display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: rgba(52, 152, 219, 0.2);
+            color: #fff;
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            border-radius: 50px;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-tag:hover {
+            background: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .college-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .view-details {
+            display: inline-block;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+        color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+        text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+        }
+
+        .view-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .view-details:hover::before {
+            width: 100%;
+        }
+
+        .view-details:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .view-details i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-details:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Modern Filter Section */
+        .college-filters {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .college-filters:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .filter-group {
+            position: relative;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+        font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        }
+
+        .filter-group label i {
+            margin-right: 8px;
+            color: #3498db;
+            font-size: 1.1rem;
+        }
+
+        .filter-group select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+
+        .filter-group select:hover, 
+        .filter-group select:focus {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .filter-group select option {
+            background-color: #1a2634;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .filter-buttons {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .filter-button,
+        .reset-button {
+            flex: 1;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .reset-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-button:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .reset-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .filter-button:active,
+        .reset-button:active {
+            transform: translateY(1px);
+        }
+
+        .filter-button i,
+        .reset-button i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-button:hover i {
+            transform: translateY(-2px);
+        }
+
+        .reset-button:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* Animated Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .section-title::after {
+            content: '';
+        position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .section-title:hover::after {
+            width: 100px;
+        }
+
+        /* Loading Animation */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+        opacity: 1;
+        transform: translateY(0);
+            }
+        }
+
+        /* College Rating Stars Animation */
+        .college-rating i {
+            color: #f1c40f;
+            transition: var(--transition);
+        }
+
+        .college-rating:hover i {
+            transform: scale(1.2);
+            color: #f39c12;
+        }
+
+        /* College Location Icon Animation */
+        .college-location i {
+            color: var(--primary-color);
+        transition: var(--transition);
+    }
+
+        .college-location:hover i {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* Grid Layout Animation */
+        .college-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+        transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Modern Body Styles */
+        body {
+            background: linear-gradient(135deg, #1a2634, #0c151f);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Updated Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+        text-align: center;
+            margin: 40px 0;
+        position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+    }
+
+        .section-title::before {
+        content: '';
+        position: absolute;
+            bottom: -15px;
+        left: 0;
+        width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+        }
+
+        /* Modern Grid Layout */
+        .college-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        /* Page Animation */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .colleges-section {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+        position: relative;
+    }
+
+        .scroll-indicator span::before {
+        content: '';
+        position: absolute;
+            top: 8px;
+        left: 50%;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+        transform: translateX(-50%);
+            animation: scrollAnim 2s infinite;
+        }
+
+        @keyframes scrollAnim {
+            0% {
+                opacity: 1;
+                top: 8px;
+            }
+            70% {
+                opacity: 1;
+                top: 30px;
+            }
+            100% {
+                opacity: 0;
+                top: 30px;
+            }
+        }
+
+        .scroll-indicator p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+        width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Container */
+        main.container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ACPC Info Section */
+        .acpc-info-section {
+        display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+            margin-top: 50px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+    }
+
+        .info-box:hover {
+        transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box h3 {
+            color: #fff;
+            font-size: 1.4rem;
+        margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box h3 i {
+            color: #3498db;
+            font-size: 1.6rem;
+        }
+
+        .info-box p,
+        .info-box li {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .info-box ol {
+            padding-left: 25px;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Centered Paragraph */
+        .centered-paragraph {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: center;
+            color: #fff;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .centered-paragraph:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .centered-paragraph a {
+            color: #3498db;
+        text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .centered-paragraph a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .centered-paragraph a:hover {
+            color: #2ecc71;
+        }
+
+        .centered-paragraph a:hover::after {
+            width: 100%;
+            background: #2ecc71;
+        }
+
+        /* Pagination */
+        .pagination {
+        display: flex;
+        justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-radius: 50%;
+        text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pagination a.active,
+        .pagination a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .college-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .stars {
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .college-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .college-rating span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .college-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .highlight {
+            display: flex;
+            flex-direction: column;
+        align-items: center;
+        justify-content: center;
+            text-align: center;
+        }
+
+        .highlight i {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .highlight span {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .category-tabs {
+        display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab.active, 
+        .tab:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Enhanced Header Styles */
+        header {
+            background: rgba(26, 38, 52, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #3498db;
+            margin-left: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 5px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        position: relative;
+        }
+
+        .nav-link i {
+        font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+            color: #3498db;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 30px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            padding: 10px 15px;
+            color: #fff;
+        outline: none;
+            width: 200px;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box button {
+            background: #3498db;
+        border: none;
+            color: #fff;
+            padding: 10px 15px;
+        cursor: pointer;
+            transition: background 0.3s ease;
+    }
+
+        .search-box button:hover {
+            background: #2980b9;
+    }
+
+    .theme-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        display: flex;
+        align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            width: 30px;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle:hover span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle:hover span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Enhanced Footer Styles */
+        footer {
+            background: #1a2634;
+            color: #fff;
+            position: relative;
+        }
+
+        .footer-top {
+            background: linear-gradient(135deg, #1a2634, #0c151f);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+        }
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+        .footer-title {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+    position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col:hover .footer-title::after {
+            width: 50px;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+        display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links li a i {
+            margin-right: 10px;
+            color: #3498db;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links li a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact li i {
+            color: #3498db;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .footer-contact li span {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact li:hover span {
+            color: #fff;
+        }
+
+        .map-container {
+            grid-column: span 2;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #3498db;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1a2634;
+                flex-direction: column;
+                padding: 20px;
+            gap: 10px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                grid-column: span 1;
+            }
+        }
+
+        /* Update light mode styles */
+        .light-mode {
+            --primary-color: #2980b9;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --dark-color: #f5f5f5;
+            --light-color: #2c3e50;
+            --text-color: #2c3e50;
+            --text-light: #555;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode body {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            color: var(--text-color);
+        }
+
+        .light-mode header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .logo,
+        .light-mode .nav-link,
+        .light-mode .theme-toggle {
+            color: var(--text-color);
+        }
+
+        .light-mode .menu-toggle span {
+            background: var(--text-color);
+        }
+
+        .light-mode .search-box {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .light-mode .search-box input {
+            color: var(--text-color);
+        }
+
+        .light-mode .search-box input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .light-mode .college-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .college-content h3,
+        .light-mode .college-location,
+        .light-mode .college-desc {
+            color: var(--text-color);
+        }
+
+        .light-mode .college-rating span,
+        .light-mode .highlight span {
+            color: var(--text-light);
+        }
+
+        .light-mode .feature-tag {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--text-color);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .light-mode .feature-tag:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .light-mode .college-highlights {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .light-mode .centered-paragraph {
+            background: white;
+            color: var(--text-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .tab {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .college-filters {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .filter-group label {
+            color: var(--text-color);
+        }
+
+        .light-mode .filter-group select {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .footer-top {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+        }
+
+        .light-mode .footer-links li a,
+        .light-mode .footer-contact li span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .light-mode .empty-state {
+            color: var(--text-color);
+        }
+
+        .light-mode .section-title {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Edu<span>Guide</span></a>
+            
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="has-mega-menu">
+                        <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-university"></i> Admission Guidance</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-newspaper"></i> News & Circulars</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-book"></i> Courses & Resources</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-users"></i> Community</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-medal"></i> Scholarships</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-briefcase"></i> Jobs & Internships</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon toggle-icon"></i>
+                    </div>
+                    
+                    <div class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="colleges-section">
+            <h1 class="section-title">ACPC Colleges in Gujarat</h1>
+            
+            <div class="centered-paragraph">
+                The Admission Committee for Professional Courses (ACPC) governs admissions to professional degree courses in Gujarat. <a href="acpc-process.html" class="acpc-link">Learn more about the ACPC process</a> or <a href="https://acpc.gujarat.gov.in" target="_blank" class="acpc-link">visit the official ACPC website</a>.
+            </div>
+            
+            <div class="college-filters">
+                <div class="filter-group">
+                    <label for="location-filter"><i class="fas fa-map-marker-alt"></i> Location</label>
+                    <select id="location-filter">
+                        <option value="all">All Gujarat</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="vadodara">Vadodara</option>
+                        <option value="surat">Surat</option>
+                        <option value="rajkot">Rajkot</option>
+                        <option value="gandhinagar">Gandhinagar</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="type-filter"><i class="fas fa-university"></i> College Type</label>
+                    <select id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="government">Government</option>
+                        <option value="granted">Granted</option>
+                        <option value="self-financed">Self-Financed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="branch-filter"><i class="fas fa-graduation-cap"></i> Branch</label>
+                    <select id="branch-filter">
+                        <option value="all">All Branches</option>
+                        <option value="computer">Computer Engineering</option>
+                        <option value="mechanical">Mechanical Engineering</option>
+                        <option value="civil">Civil Engineering</option>
+                        <option value="electrical">Electrical Engineering</option>
+                        <option value="it">Information Technology</option>
+                    </select>
+                </div>
+                <div class="filter-buttons">
+                <button class="filter-button"><i class="fas fa-filter"></i> Apply Filters</button>
+                <button class="reset-button"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+            
+            <!-- Replace the category tabs section with this enhanced version -->
+            <div class="category-tabs">
+                <a href="#" class="tab active" data-filter="all">All Colleges</a>
+                <a href="#" class="tab" data-filter="government">Government</a>
+                <a href="#" class="tab" data-filter="self-financed">Self-Financed</a>
+                <a href="#" class="tab" data-filter="granted">Granted</a>
+                <a href="#" class="tab" data-filter="top-rated">Top Rated</a>
+            </div>
+            
+            <div class="college-grid">
+                <!-- Add data-type attributes to each college card for filtering -->
+                <!-- Update one card example - repeat for all cards -->
+                <div class="college-card" data-type="government" data-location="ahmedabad" data-rating="4.5">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=LDCE');">
+                        <div class="college-badge">Government</div>
+                    </div>
+                    <div class="college-content">
+                        <h3>LD College of Engineering</h3>
+                        <div class="college-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span>4.5 (1,245 reviews)</span>
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span>Ahmedabad, Gujarat</span>
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Government</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Premier government engineering college in Gujarat with excellent placement records.</p>
+                        <div class="college-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Est. 1948</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-users"></i>
+                                <span>2000+ Students</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-book"></i>
+                                <span>18 Courses</span>
+                            </div>
+                        </div>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="government" data-location="ahmedabad" data-rating="4.3">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=VGEC');"></div>
+                    <div class="college-content">
+                        <h3>Vishwakarma Government Engineering College</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.3 (980 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Government</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Known for its strong industry connections and modern infrastructure.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="government" data-location="gandhinagar" data-rating="4.7">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=DAIICT');"></div>
+                    <div class="college-content">
+                        <h3>DAIICT</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.7 (1,520 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Gandhinagar, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Deemed University</span>
+                            <span class="feature-tag">ICT Focus</span>
+                        </div>
+                        <p class="college-desc">Premier institute for Information and Communication Technology.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Grant-in-Aid Colleges -->
+                <div class="college-card" data-type="granted" data-location="vasad" data-rating="4.2">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=SVIT');"></div>
+                    <div class="college-content">
+                        <h3>Sardar Vallabhbhai Patel Institute of Technology</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.2 (870 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Vasad, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Granted</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Excellent infrastructure with strong focus on research and development.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="government" data-location="bhuj" data-rating="4.0">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=GCET');"></div>
+                    <div class="college-content">
+                        <h3>Government College of Engineering & Technology</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.0 (750 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Bhuj, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Government</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Serving the Kutch region with quality technical education since 2004.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="granted" data-location="vallabh-vidyanagar" data-rating="4.4">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=BVM');"></div>
+                    <div class="college-content">
+                        <h3>Birla Vishvakarma Mahavidyalaya</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.4 (1,100 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Vallabh Vidyanagar, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Granted</span>
+                            <span class="feature-tag">Autonomous</span>
+                        </div>
+                        <p class="college-desc">One of the oldest and most prestigious engineering colleges in Gujarat.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Self-Financed Colleges -->
+                <div class="college-card" data-type="self-financed" data-location="anand" data-rating="3.9">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=ADIT');"></div>
+                    <div class="college-content">
+                        <h3>A.D. Patel Institute of Technology</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 3.9 (680 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Anand, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Self-Financed</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Known for its excellent placement records and industry collaborations.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="self-financed" data-location="vallabh-vidyanagar" data-rating="4.1">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=VGEC');"></div>
+                    <div class="college-content">
+                        <h3>G H Patel College of Engineering & Technology</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.1 (920 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Vallabh Vidyanagar, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Granted</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Excellent faculty and research facilities with strong alumni network.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="self-financed" data-location="surat" data-rating="3.8">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=SCET');"></div>
+                    <div class="college-content">
+                        <h3>Sardar Vallabhbhai Patel Institute of Technology</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 3.8 (650 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Surat, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Self-Financed</span>
+                            <span class="feature-tag">GTU</span>
+                        </div>
+                        <p class="college-desc">Known for its strong industry connections in the diamond and textile hub.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- More ACPC colleges -->
+                <div class="college-card" data-type="government" data-location="vadodara" data-rating="4.2">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=MSU');"></div>
+                    <div class="college-content">
+                        <h3>M.S. University Faculty of Engineering</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.2 (1,050 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Vadodara, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Government</span>
+                            <span class="feature-tag">MSU</span>
+                        </div>
+                        <p class="college-desc">Part of the prestigious Maharaja Sayajirao University of Baroda.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="government" data-location="nadiad" data-rating="4.0">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=DDIT');"></div>
+                    <div class="college-content">
+                        <h3>Dharmsinh Desai University</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.0 (890 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Nadiad, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Deemed University</span>
+                            <span class="feature-tag">Autonomous</span>
+                        </div>
+                        <p class="college-desc">Offers innovative programs with strong industry-academia interface.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="college-card" data-type="private" data-location="ahmedabad" data-rating="4.3">
+                    <div class="college-image" style="background-image: url('https://via.placeholder.com/400x200/3498db/ffffff?text=ITNU');"></div>
+                    <div class="college-content">
+                        <h3>Institute of Technology, Nirma University</h3>
+                        <div class="college-rating">
+                            <i class="fas fa-star"></i> 4.3 (1,200 reviews)
+                        </div>
+                        <div class="college-location">
+                            <i class="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat
+                        </div>
+                        <div class="college-features">
+                            <span class="feature-tag acpc-tag">ACPC</span>
+                            <span class="feature-tag">Private University</span>
+                            <span class="feature-tag">NBA Accredited</span>
+                        </div>
+                        <p class="college-desc">Premier private engineering institute with excellent infrastructure.</p>
+                        <a href="college-detail.html" class="view-details">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </section>
+        
+        <section class="acpc-info-section">
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> ACPC Admission Process</h3>
+                <div>
+                    <ol>
+                        <li>Registration on ACPC portal</li>
+                        <li>Filling of choices (college and branch preferences)</li>
+                        
+                        <li>Mock rounds (to understand probable admissions)</li>
+                        <li>Final admission rounds</li>
+                        <li>Reporting to allotted college</li>
+                    </ol>
+                </div>
+                <a href="acpc-process.html" class="learn-more-btn">Learn More About ACPC</a>
+            </div>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-chart-line"></i> ACPC Cutoff Trends</h3>
+                <p>Check the previous year cutoff ranks for different colleges and branches to better plan your choices.</p>
+                <div class="cutoff-example">
+                    <div class="cutoff-row">
+                        <span>LDCE Computer</span>
+                        <span>Rank: &lt; 500</span>
+                    </div>
+                    <div class="cutoff-row">
+                        <span>VGEC IT</span>
+                        <span>Rank: &lt; 1500</span>
+                    </div>
+                    <div class="cutoff-row">
+                        <span>DAIICT ICT</span>
+                        <span>Rank: &lt; 3000</span>
+                    </div>
+                </div>
+                <a href="cutoff-analysis.html" class="learn-more-btn">View Detailed Cutoffs</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-top">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                        <h3 class="footer-title">EduGuide</h3>
+                        <p class="footer-desc">Your comprehensive educational companion providing guidance for admissions, courses, resources, and career opportunities.</p>
+                    <div class="social-links">
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="#admission-guidance"><i class="fas fa-chevron-right"></i> Admission Guidance</a></li>
+                            <li><a href="#resources"><i class="fas fa-chevron-right"></i> Courses & Resources</a></li>
+                            <li><a href="#scholarships"><i class="fas fa-chevron-right"></i> Scholarships</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                        <h3 class="footer-title">Admission Help</h3>
+                        <ul class="footer-links">
+                            <li><a href="#acpc-process"><i class="fas fa-chevron-right"></i> ACPC Process</a></li>
+                            <li><a href="#jee-guidance"><i class="fas fa-chevron-right"></i> JEE Guidance</a></li>
+                            <li><a href="#college-predictor"><i class="fas fa-chevron-right"></i> College Predictor</a></li>
+                            <li><a href="#cutoff-analysis"><i class="fas fa-chevron-right"></i> Cutoff Analysis</a></li>
+                            <li><a href="#college-reviews"><i class="fas fa-chevron-right"></i> College Reviews</a></li>
+                            <li><a href="#book-session"><i class="fas fa-chevron-right"></i> Counselling</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                        <h3 class="footer-title">Contact Info</h3>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> <span>123 Education St, Ahmedabad, Gujarat</span></li>
+                            <li><i class="fas fa-phone"></i> <span>+91 9876543210</span></li>
+                            <li><i class="fas fa-envelope"></i> <span>info@eduguide.com</span></li>
+                            <li><i class="fas fa-clock"></i> <span>Mon-Sat: 9:00 AM - 6:00 PM</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3706.7556691730206!2d73.002549!3d21.712211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDQyJzQ0LjAiTiA3M8KwMDAnMDkuMiJF!5e0!3m2!1sen!2sin!4v1743587886877!5m2!1sen!2sin" 
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+            <div class="copyright">
+                    <p>© 2023 EduGuide. All Rights Reserved. | <a href="#privacy-policy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Add JavaScript for enhanced interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all the key elements
+            const scrollTop = document.getElementById('scrollTop') || document.createElement('div');
+            const scrollIndicator = document.querySelector('.scroll-indicator') || document.createElement('div');
+            const collegeCards = document.querySelectorAll('.college-card');
+            const typeFilter = document.getElementById('type-filter');
+            const locationFilter = document.getElementById('location-filter');
+            const branchFilter = document.getElementById('branch-filter');
+            const filterButton = document.querySelector('.filter-button');
+            const resetButton = document.querySelector('.reset-button');
+            const categoryTabs = document.querySelectorAll('.tab');
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const themeToggle = document.getElementById('themeToggle');
+            const toggleIcon = document.querySelector('.toggle-icon');
+            const body = document.body;
+
+            // Scroll to top functionality
+            if (!document.getElementById('scrollTop')) {
+                scrollTop.id = 'scrollTop';
+                scrollTop.className = 'scroll-top';
+                scrollTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                document.body.appendChild(scrollTop);
+            }
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTop.classList.add('active');
+                    if (scrollIndicator) {
+                        scrollIndicator.style.opacity = '0';
+                    }
+                } else {
+                    scrollTop.classList.remove('active');
+                    if (scrollIndicator) {
+                        scrollIndicator.style.opacity = '0.8';
+                    }
+                }
+            });
+
+            scrollTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Create scroll indicator if it doesn't exist
+            if (!document.querySelector('.scroll-indicator')) {
+                scrollIndicator.className = 'scroll-indicator';
+                scrollIndicator.innerHTML = '<span></span><p>Scroll down</p>';
+                document.body.appendChild(scrollIndicator);
+            }
+
+            // Initialize mobile menu
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // Theme toggle functionality
+            if (themeToggle && toggleIcon) {
+                // Check for saved theme preference
+                const currentTheme = localStorage.getItem('theme');
+                if (currentTheme === 'light') {
+                    body.classList.add('light-mode');
+                    toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                }
+                
+                themeToggle.addEventListener('click', function() {
+                    body.classList.toggle('light-mode');
+                    
+                    if (body.classList.contains('light-mode')) {
+                        toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        toggleIcon.classList.replace('fa-sun', 'fa-moon');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            }
+
+            // Filtering functionality for category tabs
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+              e.preventDefault();
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Hide all cards with animation
+                    collegeCards.forEach(card => {
+                        card.style.opacity = '0.5';
+                        card.style.transform = 'scale(0.95)';
+                    });
+                    
+                    // After a short delay, filter and show matching cards
+                    setTimeout(() => {
+                        collegeCards.forEach((card, index) => {
+                            const cardType = card.getAttribute('data-type');
+                            const cardRating = parseFloat(card.getAttribute('data-rating') || '0');
+                            
+                            let isVisible = false;
+                            
+                            if (filterValue === 'all') {
+                                isVisible = true;
+                            } else if (filterValue === 'top-rated' && cardRating >= 4.0) {
+                                isVisible = true;
+                            } else if (cardType === filterValue) {
+                                isVisible = true;
+                            }
+                            
+                            if (isVisible) {
+                                card.style.display = 'block';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0) scale(1)';
+                                }, 50 * index);
+                            } else {
+                                setTimeout(() => {
+                                    card.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                        
+                        // Check if any cards are visible
+                        setTimeout(() => {
+                            const visibleCards = Array.from(collegeCards).filter(card => 
+                                card.style.display !== 'none');
+                                
+                            if (visibleCards.length === 0) {
+                                const emptyMessage = document.querySelector('.empty-results') || 
+                                    document.createElement('div');
+                                    
+                                if (!document.querySelector('.empty-results')) {
+                                    emptyMessage.className = 'empty-results';
+                                    emptyMessage.innerHTML = `
+                                        <div style="text-align: center; padding: 40px; color: #fff;">
+                                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; color: #3498db;"></i>
+                                            <h3>No colleges found</h3>
+                                            <p>Try different filter criteria</p>
+                                        </div>
+                                    `;
+                                    document.querySelector('.college-grid').appendChild(emptyMessage);
+                                } else {
+                                    emptyMessage.style.display = 'block';
+                                }
+                            } else {
+                                const emptyMessage = document.querySelector('.empty-results');
+                                if (emptyMessage) {
+                                    emptyMessage.style.display = 'none';
+                                }
+                            }
+                        }, 400);
+                    }, 300);
+                });
+            });
+            
+            // Form filter functionality
+            filterButton.addEventListener('click', function() {
+                const selectedType = typeFilter.value;
+                const selectedLocation = locationFilter.value;
+                const selectedBranch = branchFilter.value;
+                
+                // Update active tab based on filter selection
+                categoryTabs.forEach(tab => {
+                    if (tab.getAttribute('data-filter') === selectedType) {
+                        categoryTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                    } else if (selectedType === 'all' && tab.getAttribute('data-filter') === 'all') {
+                        categoryTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                    }
+                });
+                
+                // Hide all cards with animation
+                collegeCards.forEach(card => {
+                    card.style.opacity = '0.5';
+                    card.style.transform = 'scale(0.95)';
+                });
+                
+                // After a short delay, filter and show matching cards
+                setTimeout(() => {
+                    collegeCards.forEach((card, index) => {
+                        const cardType = card.getAttribute('data-type');
+                        const cardLocation = card.querySelector('.college-location').textContent.toLowerCase();
+                        const cardDesc = card.querySelector('.college-desc').textContent.toLowerCase();
+                        
+                        const matchesType = selectedType === 'all' || cardType === selectedType;
+                        const matchesLocation = selectedLocation === 'all' || 
+                            cardLocation.includes(selectedLocation.toLowerCase());
+                        const matchesBranch = selectedBranch === 'all' || 
+                            cardDesc.includes(selectedBranch.toLowerCase());
+                        
+                        if (matchesType && matchesLocation && matchesBranch) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) scale(1)';
+                            }, 50 * index);
+                        } else {
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    
+                    // Check if any cards are visible
+                    setTimeout(() => {
+                        const visibleCards = Array.from(collegeCards).filter(card => 
+                            card.style.display !== 'none');
+                            
+                        if (visibleCards.length === 0) {
+                            const emptyMessage = document.querySelector('.empty-results') || 
+                                document.createElement('div');
+                                
+                            if (!document.querySelector('.empty-results')) {
+                                emptyMessage.className = 'empty-results';
+                                emptyMessage.innerHTML = `
+                                    <div style="text-align: center; padding: 40px; color: #fff;">
+                                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; color: #3498db;"></i>
+                                        <h3>No colleges found</h3>
+                                        <p>Try different filter criteria</p>
+                                    </div>
+                                `;
+                                document.querySelector('.college-grid').appendChild(emptyMessage);
+                            } else {
+                                emptyMessage.style.display = 'block';
+                            }
+                        } else {
+                            const emptyMessage = document.querySelector('.empty-results');
+                            if (emptyMessage) {
+                                emptyMessage.style.display = 'none';
+                            }
+                        }
+                    }, 400);
+                }, 300);
+            });
+            
+            // Reset button functionality
+            resetButton.addEventListener('click', function() {
+                // Reset form filters
+                typeFilter.value = 'all';
+                locationFilter.value = 'all';
+                branchFilter.value = 'all';
+                
+                // Update active tab
+                categoryTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.getAttribute('data-filter') === 'all') {
+                        tab.classList.add('active');
+                    }
+                });
+                
+                // Hide all cards with animation
+                collegeCards.forEach(card => {
+                    card.style.opacity = '0.5';
+                    card.style.transform = 'scale(0.95)';
+                });
+                
+                // After a short delay, show all cards
+                setTimeout(() => {
+                    collegeCards.forEach((card, index) => {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, 30 * index);
+                    });
+                    
+                    // Hide empty message if it exists
+                    const emptyMessage = document.querySelector('.empty-results');
+                    if (emptyMessage) {
+                        emptyMessage.style.display = 'none';
+                    }
+                }, 300);
+            });
+
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.filter-button, .reset-button, .view-details, .learn-more-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple-effect';
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Make feature tags interactive
+            const featureTags = document.querySelectorAll('.feature-tag');
+            featureTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const tagText = this.textContent.trim().toLowerCase();
+                    
+                    // Highlight matching tags across all cards
+                    featureTags.forEach(t => {
+                        if (t.textContent.trim().toLowerCase() === tagText) {
+                            t.style.background = '#3498db';
+                            t.style.transform = 'translateY(-5px)';
+                            t.style.boxShadow = '0 5px 15px rgba(52, 152, 219, 0.4)';
+                        }
+                    });
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        featureTags.forEach(t => {
+                            t.style.background = '';
+                            t.style.transform = '';
+                            t.style.boxShadow = '';
+                        });
+                    }, 2000);
+                });
+            });
+
+            // Add component styles for ripple effect
+            const styleElement = document.createElement('style');
+            styleElement.textContent = `
+                /* Ripple Effect */
+                .filter-button, .reset-button, .view-details, .learn-more-btn {
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .ripple-effect {
+                    position: absolute;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                    width: 100px;
+                    height: 100px;
+                }
+                
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+                
+                /* Empty State */
+                .empty-results {
+                    grid-column: 1 / -1;
+                    width: 100%;
+                }
+                
+                /* Light mode adjustments */
+                .light-mode .empty-results {
+                    color: var(--text-color);
+                }
+            `;
+            document.head.appendChild(styleElement);
+  });
+    </script>
+</body>
+</html>
